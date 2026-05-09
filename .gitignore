@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Audio data (usually too large for Git)
+raw_audio/
+normalized_audio/
+
+# Docker / Database
+postgres_data/
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Documentation
+docs/
