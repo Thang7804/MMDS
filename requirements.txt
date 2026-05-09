@@ -1,0 +1,10 @@
+streamlit
+librosa
+numpy
+matplotlib
+psycopg[binary]
+soundfile
+tqdm
+scikit-learn
+scipy
+python-dotenv
