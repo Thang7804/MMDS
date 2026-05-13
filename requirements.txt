@@ -5,6 +5,7 @@ matplotlib
 psycopg[binary]
 soundfile
 tqdm
-scikit-learn
 scipy
 python-dotenv
+scikit-learn
+joblib

@@ -13,6 +13,7 @@ normalized_audio/
 
 # Docker / Database
 postgres_data/
+pgvector/
 .env
 
 # IDEs

@@ -31,7 +31,7 @@ MIN_SPEECH_DURATION = 3.0  # giay - chi giu file >= 3s sau trim (0% silence padd
 MIN_SPEECH_SAMPLES = TARGET_SAMPLES
 
 # Nguong trim silence (dB) - cang cao cang "manh tay" cat
-TRIM_TOP_DB = 30
+TRIM_TOP_DB = 25
 
 
 def collect_audio_files(input_dir: Path) -> list[Path]:
@@ -58,7 +58,8 @@ def normalize_waveform(y: np.ndarray) -> tuple[np.ndarray | None, str]:
     
     # Buoc 3: Phan tich voiced_flag tren toan bo file (Chay pyin 1 lan duy nhat)
     hop_length = 512
-    f0, _, voiced_flag = librosa.pyin(y_trimmed, fmin=50, fmax=400, sr=SAMPLE_RATE, hop_length=hop_length)
+    # librosa.pyin returns (f0, voiced_flag, voiced_prob)
+    f0, voiced_flag, _ = librosa.pyin(y_trimmed, fmin=50, fmax=300, sr=SAMPLE_RATE, hop_length=hop_length)
     
     # Buoc 4: Sliding Window tim doan 3s tot nhat
     frames_in_3s = int(TARGET_SAMPLES / hop_length)

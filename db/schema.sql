@@ -26,13 +26,14 @@ CREATE TABLE IF NOT EXISTS audio_features (
     centroid_mean DOUBLE PRECISION,
     bandwidth_mean DOUBLE PRECISION,
     harmonicity DOUBLE PRECISION,
+    voiced_ratio DOUBLE PRECISION,
     
     -- Vector dac trung (Tach biet)
     mfcc_static vector(13),
     mfcc_std vector(13),
     
-    -- Ket qua phan cum
-    cluster_id INTEGER,
+    -- Combined 33D vector: [7 scalars normalized + 13 MFCC static + 13 MFCC std]
+    combined_features_vector vector(33),
     
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -41,7 +42,8 @@ CREATE OR REPLACE VIEW vw_audio_feature_vectors AS
 SELECT
     af.audio_id, f.file_name,
     af.pitch_mean, af.average_energy, af.zcr_mean, 
-    af.centroid_mean, af.bandwidth_mean, af.harmonicity,
-    af.mfcc_static, af.mfcc_std, af.cluster_id
+    af.centroid_mean, af.bandwidth_mean, af.harmonicity, af.voiced_ratio,
+    af.mfcc_static, af.mfcc_std,
+    af.combined_features_vector
 FROM audio_features af
 JOIN audio_files f ON f.id = af.audio_id;

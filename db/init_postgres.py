@@ -85,7 +85,7 @@ def main() -> None:
         f"tren {os.getenv('PGHOST', 'localhost')}:{os.getenv('PGPORT', '5432')} "
         f"voi user='{os.getenv('PGUSER', 'postgres')}'."
     )
-    print("[INFO] Database san sang cho cac bang audio_files, audio_features, retrieval_sessions, retrieval_results.")
+    print("[INFO] Database san sang cho cac bang audio_files, audio_features.")
 
 
 if __name__ == "__main__":
